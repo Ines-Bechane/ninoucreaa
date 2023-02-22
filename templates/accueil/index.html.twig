@@ -2,17 +2,13 @@
 
 {% block title %}Ninoucrea!{% endblock %}
 
-
-
 {% block body %}
 
-  {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
-
+{% if app.user %}
+<div class="mb-3">
+    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+</div>
+{% endif %}
 
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -20,12 +16,10 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/formation/Desktop/ninoucrea/src/Controller/AccueilController.php'|file_link(0) }}">src/Controller/AccueilController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/formation/Desktop/ninoucrea/templates/accueil/index.html.twig'|file_link(0) }}">templates/accueil/index.html.twig</a></code></li>
-    </ul>
+    <h1>Hello {{ controller_name }}! 🎀</h1>
+ 
+    
 </div>
+<img src="{{ asset("images/nuages.jpg")}}" alt="accueil" width="1900" height="300">
+
 {% endblock %}
