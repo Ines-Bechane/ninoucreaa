@@ -20,6 +20,14 @@
  
     
 </div>
-<img src="{{ asset("images/nuages.jpg")}}" alt="accueil" width="1900" height="300">
 
+
+    {# {{dump(produits) }} #}
+    {% for value in produits %}
+        <img src="{{ value.photo}}" alt="photo" width="100">
+        <p>{{ value.titre}}</p>
+        <p>{{ value.description}}</p>
+        <p>{{ value.prix}}</p>
+        <a href="">Ajouter au panier</a>
+    {% endfor %}
 {% endblock %}
