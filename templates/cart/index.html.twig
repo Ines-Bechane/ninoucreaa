@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Panier!
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Panier! 🛒</h1>
+	</div>
+
+	{% if cart|length > 0 %}
+		<a href="{{ path('delete_all_cart') }}">Vider le panier</a>
+		{% set total = null %}
+		{% for value in cart %}
+			{% set total = total + (value.produit.prix * value.quantity) %}
+
+
+			<div class="card m-3" style="width: 15rem;">
+
+				<img src="{{ value.produit.photo}}" class="card-img-top" alt="photo">
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas tenetur distinctio perspiciatis nihil, architecto sunt odio beatae sequi id inventore quia...</p>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">{{ value.produit.description}}</li>
+					<li class="list-group-item">Prix :
+						{{ (value.produit.prix * value.quantity)|number_format(2, ',','.') }}
+						€</li>
+					<a href=" {{ path('decrease_cart', {'id' : value.produit.id }) }}" class="card-link">-</a>
+					<li class="list-group-item">Quantity :
+						{{ value.quantity}}</li>
+					<a href=" {{ path('post_cart', {'id' : value.produit.id }) }}" class="card-link">+</a>
+				</ul>
+				<div class="card-body">
+					<a href=" {{ path('delete_cart', {'id' : value.produit.id }) }}" class="card-link">Supprimer</a>
+				</div>
+			{% endfor %}
+			Nombre de produit :
+			{{ cart|length }}
+			<p class="list-group-item">Prix total :
+				{{ (total)|number_format(2, ',','.') }}
+				€</p>
+		{% else %}
+			<p>
+				VOTRE PANIER EST VIDE !
+			</p>
+		{% endif %}
+	</div>
+
+
+{% endblock %}
